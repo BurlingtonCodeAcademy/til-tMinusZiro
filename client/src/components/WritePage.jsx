@@ -1,8 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 
 const WritePage = (props) => {
+  const [viewEdit, setViewEdit] = useState("hidden");
+  const [viewDelete, setViewDelete] = useState("hidden");
   const [editEntry, setEditEntry] = useState(null);
   const [editTitle, setEditTitle] = useState();
   const [editText, setEditText] = useState();
@@ -10,25 +11,23 @@ const WritePage = (props) => {
   const [editTags, setEditTags] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
   //provides access to current url and allows me to push a new route
-  let history = useHistory();
+
   let interTagArray = [];
 
-  console.log(`Write Page`);
   //fetch wrapped in a useEffect hook to constantly update journal entry
   useEffect(() => {
     if (!editEntry) {
-      console.log(props.match.params.id);
       fetch(`/journal/${props.match.params.id}`)
         .then((res) => res.json())
         .then((entry) => {
           setEditEntry(entry);
-          console.log(`author: ${entry.author}`);
+
           setEditAuthor(entry.author);
-          console.log(`text: ${entry.text}`);
+
           setEditText(entry.text);
-          console.log(`title: ${entry.title}`);
+
           setEditTitle(entry.title);
-          console.log(`Tags:`);
+
           setEditTags(entry.tag);
         });
     }
@@ -45,35 +44,66 @@ const WritePage = (props) => {
     }
   }
 
-  function checkTags(str) {
-    if (editTags) {
-      if (editTags.includes(str)) {
-        return true;
-      } else {
-        return false;
-      }
-    }
+  function displayEditModal() {
+    viewEdit === "hidden" ? setViewEdit("visible") : setViewEdit("hidden");
+  }
+  function displayDeleteModal() {
+    viewDelete === "hidden"
+      ? setViewDelete("visible")
+      : setViewDelete("hidden");
   }
 
-  console.log(editTitle);
-  console.log(editAuthor);
-  console.log(editText);
-  console.log(`Current TAGS:`);
-  console.log(editTags);
-  console.log(interTagArray);
   return (
     <div>
-      <h1>This is the Write Page</h1>
-
-      <div>
-        <h2>Title:&nbsp;{editEntry ? editEntry.title : "Loading"}</h2>
-        <h3>By:&nbsp;{editEntry ? editEntry.author : "Loading"}</h3>
-        <h3>Content:&nbsp;{editEntry ? editEntry.text : "Loading"}</h3>
-        <h3>Tags:&nbsp;{editEntry ? editEntry.tag : "Loading"}</h3>
-        <h3>Date:&nbsp;{editEntry ? editEntry.when : "Loading"}</h3>
-        <h3>Id:&nbsp;{editEntry ? editEntry._id : "Loading"}</h3>
-      </div>
-      <div className="edit-form">
+      <h2 id="write-section-title">
+        <span id="edit-modal" onClick={displayEditModal}>
+          Edit
+        </span>{" "}
+        or{" "}
+        <span id="delete-modal" onClick={displayDeleteModal}>
+          Delete
+        </span>
+      </h2>
+      <section id="write-page-wrapper">
+        <div id="edit-page-entry">
+          <h2>
+            <span className="readPg-entry-category">Title:&nbsp;</span>
+            {editEntry ? editEntry.title : "Loading"}
+          </h2>
+          <h3>
+            <span className="readPg-entry-category">By:&nbsp;</span>
+            {editEntry ? editEntry.author : "Loading"}
+          </h3>
+          <h3 id="writePg-entry-body">
+            <span className="readPg-entry-category">Body:&nbsp;</span>
+            {editEntry ? editEntry.text : "Loading"}
+          </h3>
+          <h3>
+            <span className="readPg-entry-category">Tags:&nbsp;</span>
+            {editEntry ? editEntry.tag : "Loading"}
+          </h3>
+          <h3>
+            <span className="readPg-entry-category">Date:&nbsp;</span>
+            {editEntry ? editEntry.when : "Loading"}
+          </h3>
+          <h3>
+            <span className="readPg-entry-category">Id:&nbsp;</span>
+            {editEntry ? editEntry._id : "Loading"}
+          </h3>
+          <div id="delete-form-wrapper" style={{ visibility: viewDelete }}>
+            <form
+              id="delete-form"
+              method="POST"
+              action={`/delete/${editEntry ? editEntry._id : ""}`}
+            >
+              <div id="delete-wrapper">
+                <input type="submit" value="Delete" id="delete" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+      <div className="edit-form" style={{ visibility: viewEdit }}>
         <form
           action={`/update/${editEntry ? editEntry._id : ""}`}
           method="POST"
@@ -289,17 +319,6 @@ const WritePage = (props) => {
             <input type="submit" value="submit" className="submit" />
           </div>
         </form>
-        {/* <div id="delete-form-wrapper">
-          <form
-            id="delete-form"
-            method="POST"
-            action={`/delete/${editEntry ? editEntry._id : ""}`}
-          >
-            <div id="delete-wrapper">
-              <input type="submit" value="Delete" id="delete" />
-            </div>
-          </form>
-        </div> */}
       </div>
     </div>
   );

@@ -28,7 +28,7 @@ const Home = () => {
             name="text"
             id="home-text"
             cols="30"
-            rows="15"
+            rows="12"
             placeholder="Enter Text"
           ></textarea>
           <fieldset>

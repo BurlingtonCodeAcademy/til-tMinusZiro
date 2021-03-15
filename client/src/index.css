@@ -1,7 +1,11 @@
+/*------------Web Styles---------------*/
+@import url("https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap");
+/*-------------Global Styles-------------*/
 body {
   margin: 0;
   padding: 0;
   background-color: #7156a5;
+  font-family: "Maven Pro", sans-serif;
 }
 
 /*-----------HEADER----------------*/
@@ -41,7 +45,7 @@ nav {
   color: white;
 }
 
-/*---------Home Page-----------*/
+/*---------------Home Page-----------------*/
 /*Home Form Wrapper*/
 .home-form {
   display: flex;
@@ -55,6 +59,7 @@ nav {
   box-sizing: border-box;
   border-radius: 5px;
   background-color: #133562;
+  font-family: "Maven Pro", sans-serif;
 }
 /*targeting title input on form*/
 #title-input {
@@ -70,6 +75,9 @@ nav {
 
 #home-text:placeholder-shown {
   color: #7156a5;
+  padding: 8px;
+  font-size: 1.1em;
+  font-family: "Maven Pro", sans-serif;
 }
 
 /* title and author input*/
@@ -85,6 +93,9 @@ nav {
 
 .home-input:placeholder-shown {
   color: #7156a5;
+  padding-left: 8px;
+  font-size: 1em;
+  font-family: "Maven Pro", sans-serif;
 }
 
 label,
@@ -129,9 +140,126 @@ legend {
 #read-page-wrapper {
   display: grid;
   grid-template-rows: auto(auto, 1fr);
+  color: #f4ecdf;
+  justify-content: center;
+}
+
+#multi-page-entry {
+  -webkit-box-shadow: 4px 3px 5px rgba(0, 0, 0, 0.733);
+  -moz-box-shadow: 4px 3px 5px rgba(0, 0, 0, 0.733);
+  box-shadow: 4px 3px 5px rgba(0, 0, 0, 0.733);
+
+  border-bottom: 1px solid #c69546;
+  max-width: 75vw;
+  background: rgb(3, 40, 85);
+  background: radial-gradient(
+    circle,
+    rgba(3, 40, 85, 1) 0%,
+    rgba(58, 103, 162, 1) 100%
+  );
+  margin-bottom: 10px;
+  padding-left: 8px;
+  padding-bottom: 2px;
+  padding-right: 8px;
+}
+#read-section-title {
+  text-align: center;
+  font-size: 1.7em;
+}
+
+.readPg-entry-category {
+  color: black;
+}
+
+.title-link-wrapper {
+  text-align: center;
+}
+
+/*journal list title link*/
+.title-link {
+  text-decoration: none;
+  color: #c69546;
+}
+
+.title-link:hover {
+  cursor: pointer;
+  color: #7156a5;
+}
+
+.readPg-entry-body {
+  text-align: justify;
 }
 
 /*--------------Edit Page-----------------*/
+
+#write-section-title {
+  text-align: center;
+  font-size: 1.7em;
+}
+
+#edit-modal {
+  border: 3px solid #c69546;
+  border-radius: 10px;
+  color: #f4ecdf;
+  background: rgb(3, 40, 85);
+  background: radial-gradient(
+    circle,
+    rgba(3, 40, 85, 1) 0%,
+    rgba(58, 103, 162, 1) 100%
+  );
+}
+
+#edit-modal:hover {
+  color: #7156a5;
+  cursor: pointer;
+}
+
+#delete-modal {
+  border: 3px solid #c69546;
+  border-radius: 10px;
+  color: #f4ecdf;
+  background: rgb(3, 40, 85);
+  background: radial-gradient(
+    circle,
+    rgba(3, 40, 85, 1) 0%,
+    rgba(58, 103, 162, 1) 100%
+  );
+}
+
+#delete-modal:hover {
+  color: #7156a5;
+  cursor: pointer;
+}
+
+#write-page-wrapper {
+  color: #f4ecdf;
+  display: flex;
+  justify-content: center;
+}
+
+#edit-page-entry {
+  -webkit-box-shadow: 4px 3px 5px rgba(0, 0, 0, 0.733);
+  -moz-box-shadow: 4px 3px 5px rgba(0, 0, 0, 0.733);
+  box-shadow: 4px 3px 5px rgba(0, 0, 0, 0.733);
+
+  max-width: 75vw;
+  background: rgb(3, 40, 85);
+  background: radial-gradient(
+    circle,
+    rgba(3, 40, 85, 1) 0%,
+    rgba(58, 103, 162, 1) 100%
+  );
+  margin-bottom: 10px;
+  padding-left: 8px;
+  padding-bottom: 2px;
+  padding-right: 8px;
+}
+
+/*journal entry body on edit page*/
+#writePg-entry-body {
+  text-align: justify;
+}
+
 /*Edit Form Wrapper*/
 .edit-form {
   display: flex;
@@ -145,14 +273,7 @@ legend {
   box-sizing: border-box;
   border-radius: 5px;
   background-color: #133562;
-}
-
-.delete-form-wrapper {
-  border: 1px solid red;
-}
-
-#delete-form {
-  border: 1px solid red;
+  margin-bottom: 10px;
 }
 
 #delete {
