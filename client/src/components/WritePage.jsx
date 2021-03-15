@@ -2,16 +2,21 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 const WritePage = (props) => {
+  //---------------state-----------------//
   const [viewEdit, setViewEdit] = useState("hidden");
   const [viewDelete, setViewDelete] = useState("hidden");
+  //journal entry content//
+  //complete object containing journal entry
   const [editEntry, setEditEntry] = useState(null);
+  //state containing just the title for entry
   const [editTitle, setEditTitle] = useState();
+  //state containing just the body section of the entry
   const [editText, setEditText] = useState();
+  //state containing just the author for entry
   const [editAuthor, setEditAuthor] = useState();
+  //state containing just the tags for the entry
   const [editTags, setEditTags] = useState([]);
-  const [isChecked, setIsChecked] = useState(false);
-  //provides access to current url and allows me to push a new route
-
+  //intermediate variable for pushing tags into
   let interTagArray = [];
 
   //fetch wrapped in a useEffect hook to constantly update journal entry
@@ -21,18 +26,15 @@ const WritePage = (props) => {
         .then((res) => res.json())
         .then((entry) => {
           setEditEntry(entry);
-
           setEditAuthor(entry.author);
-
           setEditText(entry.text);
-
           setEditTitle(entry.title);
-
           setEditTags(entry.tag);
         });
     }
   });
 
+  //function for filling any tag checkboxes that were previously selected for the entry
   function checkTagsTwo(str) {
     if (editTags) {
       //I acknowledge this is an inefficient way to solve the problem since I don't really need a for of loop
@@ -44,9 +46,11 @@ const WritePage = (props) => {
     }
   }
 
+  //toggles the edit form modal
   function displayEditModal() {
     viewEdit === "hidden" ? setViewEdit("visible") : setViewEdit("hidden");
   }
+  //toggles the delete button modal
   function displayDeleteModal() {
     viewDelete === "hidden"
       ? setViewDelete("visible")
@@ -55,6 +59,7 @@ const WritePage = (props) => {
 
   return (
     <div>
+      {/*Main section title that serves has two toggle buttons to reveal the edit form or delete button */}
       <h2 id="write-section-title">
         <span id="edit-modal" onClick={displayEditModal}>
           Edit
@@ -64,6 +69,7 @@ const WritePage = (props) => {
           Delete
         </span>
       </h2>
+      {/*Selected Journal Entry to edit*/}
       <section id="write-page-wrapper">
         <div id="edit-page-entry">
           <h2>
@@ -90,6 +96,7 @@ const WritePage = (props) => {
             <span className="readPg-entry-category">Id:&nbsp;</span>
             {editEntry ? editEntry._id : "Loading"}
           </h3>
+          {/*Delete Button*/}
           <div id="delete-form-wrapper" style={{ visibility: viewDelete }}>
             <form
               id="delete-form"
@@ -103,6 +110,7 @@ const WritePage = (props) => {
           </div>
         </div>
       </section>
+      {/*Edit Form that toggles on/off */}
       <div className="edit-form" style={{ visibility: viewEdit }}>
         <form
           action={`/update/${editEntry ? editEntry._id : ""}`}
@@ -157,7 +165,6 @@ const WritePage = (props) => {
                     interTagArray.push(e.target.value);
                     setEditTags(editTags.concat(interTagArray));
                   }
-                  // setEditTags(interTagArray);
                 }}
               />
             </label>

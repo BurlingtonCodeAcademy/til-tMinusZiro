@@ -3,25 +3,28 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const ReadPage = () => {
+  //--------state----------//
+  //state for an array of json objects containing journal entries
   const [journalEntries, setJournalEntries] = useState();
 
+  //constantly updates to fetch all journal entries from the db
   useEffect(() => {
     if (!journalEntries) {
       fetch("/facts")
         .then((res) => res.json())
         .then((entry) => {
-          console.log("In fetch");
           setJournalEntries(entry);
-          console.log({ entry });
         });
     }
   }, [journalEntries]);
 
   return (
     <div>
+      {/*Section Title */}
       <h2 id="read-section-title">List of Entries</h2>
       <section id="read-page-wrapper">
         {/*can not print out the whole object i.e. 'item', instead to extract the properties out explicitly */}
+        {/*using the fetched journal data to map the array and print out each journal entry */}
         {journalEntries
           ? journalEntries.map((entry, index) => {
               return (
@@ -61,17 +64,3 @@ const ReadPage = () => {
 };
 
 export default ReadPage;
-
-// {journalEntries
-//   ? journalEntries.forEach((obj) => {
-//       {
-//         <h3>{obj.title}</h3>;
-//       }
-//       {
-//         <h4>{obj.text}</h4>;
-//       }
-//       {
-//         <h4>{obj.when}</h4>;
-//       }
-//     })
-//   : "Loading"}

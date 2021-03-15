@@ -6,6 +6,8 @@ import ReadPage from "./components/ReadPage.jsx";
 import WritePage from "./components/WritePage.jsx";
 import NavBar from "./components/NavBar.jsx";
 
+//main site routes
+//three main pages: Home/Create Entry, List of Journal Entries, Edit or Delete Entry
 function App() {
   return (
     <div>

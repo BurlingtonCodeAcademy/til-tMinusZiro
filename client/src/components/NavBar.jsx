@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <div>
+      {/* Header Site Title and sub-title */}
       <header>
         <div id="header-title">
           <h1>Today I Learned</h1>
           <h3>Personal Journal</h3>
         </div>
+        {/*Nav Bar Links in header */}
         <nav>
           <Link className="nav-item" to={"/"}>
             <h2>Entry</h2>

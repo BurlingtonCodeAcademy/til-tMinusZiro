@@ -2,13 +2,11 @@ import React from "react";
 import { useState } from "react";
 
 const Home = () => {
-  // const fetchData = async () => {
-  //   await fetch("")
-  // }
-
   return (
     <div>
+      {/*Home page title  */}
       <h2 className="page-title">Create a Journal Entry</h2>
+      {/*Create a Journal Entry form */}
       <div className="home-form">
         <form method="POST" action="/create" className="form">
           <input
