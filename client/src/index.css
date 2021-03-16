@@ -1,13 +1,299 @@
+/*------------Web Styles---------------*/
+@import url("https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap");
+/*-------------Global Styles-------------*/
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  background-color: #7156a5;
+  font-family: "Maven Pro", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/*-----------HEADER----------------*/
+
+header {
+  background: rgb(240, 231, 214);
+  background: linear-gradient(
+    174deg,
+    rgba(240, 231, 214, 1) 24%,
+    rgba(199, 153, 78, 1) 91%
+  );
+}
+#header-title {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+#header-title > h1,
+h3 {
+  margin: 0;
+  margin-top: 7px;
+}
+/*targets the two nav bar items: journal and entry*/
+nav {
+  display: flex;
+  justify-content: flex-start;
+}
+.nav-item {
+  text-decoration: none;
+  margin: 8px;
+  margin-bottom: 0;
+}
+
+.nav-item:hover {
+  cursor: pointer;
+  color: white;
+}
+
+/*---------------Home Page-----------------*/
+/*Home Form Wrapper*/
+.home-form {
+  display: flex;
+  justify-content: center;
+}
+/*Home Form*/
+.home-form > form {
+  display: flex;
+  flex-direction: column;
+  width: 65vw;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: #133562;
+  font-family: "Maven Pro", sans-serif;
+}
+/*targeting title input on form*/
+#title-input {
+  margin-top: 0;
+}
+/*text area*/
+#home-text {
+  resize: vertical;
+  margin-top: 5px;
+  border: none;
+  background-color: #e9dbc0;
+}
+
+#home-text:placeholder-shown {
+  color: #7156a5;
+  padding: 8px;
+  font-size: 1.1em;
+  font-family: "Maven Pro", sans-serif;
+}
+
+/* title and author input*/
+.home-input {
+  height: 3vh;
+  margin-top: 5px;
+  border: none;
+  background-color: #e9dbc0;
+}
+/* .home-input:active {
+  border: 1.5px solid #133562;
+} */
+
+.home-input:placeholder-shown {
+  color: #7156a5;
+  padding-left: 8px;
+  font-size: 1em;
+  font-family: "Maven Pro", sans-serif;
+}
+
+label,
+legend {
+  color: #c69546;
+}
+
+.checkbox:hover {
+  cursor: pointer;
+}
+
+/*Home Page section title*/
+.page-title {
+  text-align: center;
+}
+
+/*Submit Button*/
+.submit-wrapper {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 8px;
+}
+
+.submit {
+  width: 15vw;
+  font-size: 1.3em;
+  color: #c69546;
+  background: none;
+
+  border-radius: 5px;
+  border: 2px solid #c69546;
+}
+
+.submit:hover {
+  color: white;
+  cursor: pointer;
+}
+
+/*---------------Read Page---------------*/
+
+#read-page-wrapper {
+  display: grid;
+  grid-template-rows: auto(auto, 1fr);
+  color: #f4ecdf;
+  justify-content: center;
+}
+
+/*title for the read page*/
+#read-section-title {
+  text-align: center;
+  font-size: 1.7em;
+}
+
+/*style for each journal entry content*/
+#multi-page-entry {
+  -webkit-box-shadow: 4px 3px 5px rgba(0, 0, 0, 0.733);
+  -moz-box-shadow: 4px 3px 5px rgba(0, 0, 0, 0.733);
+  box-shadow: 4px 3px 5px rgba(0, 0, 0, 0.733);
+
+  border-bottom: 1px solid #c69546;
+  max-width: 75vw;
+  background: rgb(3, 40, 85);
+  background: radial-gradient(
+    circle,
+    rgba(3, 40, 85, 1) 0%,
+    rgba(58, 103, 162, 1) 100%
+  );
+  margin-bottom: 10px;
+  padding-left: 8px;
+  padding-bottom: 2px;
+  padding-right: 8px;
+}
+
+/*this changes the color of the content category label*/
+.readPg-entry-category {
+  color: black;
+}
+
+/*journal list title link*/
+.title-link-wrapper {
+  text-align: center;
+}
+
+.title-link {
+  text-decoration: none;
+  color: #c69546;
+}
+
+.title-link:hover {
+  cursor: pointer;
+  color: #7156a5;
+}
+/*smooths out the right and left edges of entry body*/
+.readPg-entry-body {
+  text-align: justify;
+}
+
+/*--------------Edit Page-----------------*/
+
+#write-section-title {
+  text-align: center;
+  font-size: 1.7em;
+}
+
+/*clickable button that reveals edit modal*/
+#edit-modal {
+  border: 3px solid #c69546;
+  border-radius: 10px;
+  color: #f4ecdf;
+  background: rgb(3, 40, 85);
+  background: radial-gradient(
+    circle,
+    rgba(3, 40, 85, 1) 0%,
+    rgba(58, 103, 162, 1) 100%
+  );
+}
+
+#edit-modal:hover {
+  color: #7156a5;
+  cursor: pointer;
+}
+/*clickable button that reveals delete modal*/
+#delete-modal {
+  border: 3px solid #c69546;
+  border-radius: 10px;
+  color: #f4ecdf;
+  background: rgb(3, 40, 85);
+  background: radial-gradient(
+    circle,
+    rgba(3, 40, 85, 1) 0%,
+    rgba(58, 103, 162, 1) 100%
+  );
+}
+
+#delete-modal:hover {
+  color: #7156a5;
+  cursor: pointer;
+}
+
+#write-page-wrapper {
+  color: #f4ecdf;
+  display: flex;
+  justify-content: center;
+}
+
+/*main entry content on edit page*/
+#edit-page-entry {
+  -webkit-box-shadow: 4px 3px 5px rgba(0, 0, 0, 0.733);
+  -moz-box-shadow: 4px 3px 5px rgba(0, 0, 0, 0.733);
+  box-shadow: 4px 3px 5px rgba(0, 0, 0, 0.733);
+
+  max-width: 75vw;
+  background: rgb(3, 40, 85);
+  background: radial-gradient(
+    circle,
+    rgba(3, 40, 85, 1) 0%,
+    rgba(58, 103, 162, 1) 100%
+  );
+  margin-bottom: 10px;
+  padding-left: 8px;
+  padding-bottom: 2px;
+  padding-right: 8px;
+}
+
+/*journal entry body on edit page*/
+#writePg-entry-body {
+  text-align: justify;
+}
+
+/*Edit Form Wrapper*/
+.edit-form {
+  display: flex;
+  justify-content: center;
+}
+/*Edit Form*/
+.edit-form > form {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: #133562;
+  margin-bottom: 10px;
+}
+
+/*delete button modal*/
+#delete {
+  width: 15vw;
+  font-size: 1.3em;
+  color: #c69546;
+  background: none;
+
+  border-radius: 5px;
+  border: 2px solid #c69546;
+}
+
+#delete:hover {
+  color: white;
+  cursor: pointer;
 }
